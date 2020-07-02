@@ -17,5 +17,6 @@ steps:
   displayName: 'Download and install Trivy'
 
 - task: CmdLine@2
+  displayName: "Run trivy scan"
   inputs:
     script: 'trivy image knqyf263/vuln-image:1.2.3'
