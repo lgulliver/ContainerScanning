@@ -6,10 +6,13 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  trivyVersion: 0.9.1
+
 steps:
 - script: |
     sudo apt-get install rpm
-    wget https://github.com/aquasecurity/trivy/releases/download/latest/trivy_latest_Linux-64bit.deb
-    sudo dpkg -i trivy_latest_Linux-64bit.deb
-  displayName: 'Run a one-line script'
+    wget https://github.com/aquasecurity/trivy/releases/download/$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
+    sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
+  displayName: 'Download and install Trivy'
 
