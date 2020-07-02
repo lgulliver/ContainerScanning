@@ -20,5 +20,13 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-      trivy image --exit-code 0 --severity MEDIUM,HIGH knqyf263/vuln-image:1.2.3
-      trivy image --exit-code 1 --severity CRITICAL knqyf263/vuln-image:1.2.3
+      trivy image --format template --template "@contrib/junit.tpl" -o junit-report-high.xml --exit-code 0 --severity MEDIUM,HIGH knqyf263/vuln-image:1.2.3
+      trivy image --format template --template "@contrib/junit.tpl" -o junit-report-critical.xml --exit-code 1 --severity CRITICAL knqyf263/vuln-image:1.2.3
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'Trivy'
