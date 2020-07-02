@@ -20,8 +20,7 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-      #trivy image --format template --template "templates/junit.tpl" -o junit-report.xml ruby:2.4.0
-      trivy image ruby:2.4.0
+      trivy image --format template --template "templates/junit.tpl" -o junit-report.xml ruby:2.4.0    
 
 - task: PublishTestResults@2
   inputs:
@@ -31,3 +30,9 @@ steps:
     failTaskOnFailedTests: true
     testRunTitle: 'Trivy'
   condition: 'always()'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
