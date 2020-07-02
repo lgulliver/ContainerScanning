@@ -19,4 +19,6 @@ steps:
 - task: CmdLine@2
   displayName: "Run trivy scan"
   inputs:
-    script: 'trivy image knqyf263/vuln-image:1.2.3'
+    script: |
+      trivy image --exit-code 0 --severity MEDIUM,HIGH knqyf263/vuln-image:1.2.3
+      trivy image --exit-code 1 --severity CRITICAL knqyf263/vuln-image:1.2.3
