@@ -7,10 +7,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
+- script: |
+    sudo apt-get install rpm
+    wget https://github.com/aquasecurity/trivy/releases/download/latest/trivy_latest_Linux-64bit.deb
+    sudo dpkg -i trivy_{TRIVY_VERSION}_Linux-64bit.deb
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
