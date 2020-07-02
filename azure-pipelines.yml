@@ -20,7 +20,8 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-      trivy image --format template --template "templates/junit.tpl" -o junit-report.xml ruby:2.4.0
+      #trivy image --format template --template "templates/junit.tpl" -o junit-report.xml ruby:2.4.0
+      trivy image ruby:2.4.0
 
 - task: PublishTestResults@2
   inputs:
