@@ -16,3 +16,6 @@ steps:
     sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
   displayName: 'Download and install Trivy'
 
+- task: CmdLine@2
+  inputs:
+    script: 'trivy image knqyf263/vuln-image:1.2.3'
