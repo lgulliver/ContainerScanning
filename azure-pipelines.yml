@@ -11,10 +11,7 @@ variables:
 
 steps:
 - script: |
-    sudo apt-get install rpm
-    wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
-    sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
-    ls
+    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
   displayName: 'Download and install Trivy'
 
 - task: CmdLine@2
