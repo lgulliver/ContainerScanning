@@ -26,6 +26,13 @@ steps:
   inputs:
     script: |
       $(System.DefaultWorkingDirectory)/trivy/cmd/trivy/trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml liamgu/azuredevopscontainersdemo:74 
+      cp $(System.DefaultWorkingDirectory)/trivy/cmd/trivy/junit-report.xml $(Build.ArtifactStagingDirectory)/junit-report.xml
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: PublishTestResults@2
   inputs:
