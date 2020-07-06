@@ -21,19 +21,19 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-      trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml liamgu/azuredevopscontainersdemo:74    
+      trivy image liamgu/azuredevopscontainersdemo:74    
 
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/junit-*.xml'
-    mergeTestResults: true
-    failTaskOnFailedTests: true
-    testRunTitle: 'Trivy'
-  condition: 'always()'
+#- task: CmdLine@2
+#  displayName: "Run trivy scan"
+#  inputs:
+#    script: |
+#      trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml liamgu/azuredevopscontainersdemo:74    
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+#- task: PublishTestResults@2
+#  inputs:
+#    testResultsFormat: 'JUnit'
+#    testResultsFiles: '**/junit-*.xml'
+#    mergeTestResults: true
+#    failTaskOnFailedTests: true
+#    testRunTitle: 'Trivy'
+#  condition: 'always()'
