@@ -21,7 +21,8 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-      trivy image liamgu/azuredevopscontainersdemo:74    
+        trivy image --exit-code 0 --severity LOW,MEDIUM liamgu/azuredevopscontainersdemo:74
+        trivy image --exit-code 1 --severity HIGH,CRITICAL liamgu/azuredevopscontainersdemo:74
 
 #- task: CmdLine@2
 #  displayName: "Run trivy scan"
