@@ -11,13 +11,16 @@ pool:
 
 steps:
 - script: |
-    mkdir -p $GOPATH/src/github.com/aquasecurity
-    cd $GOPATH/src/github.com/aquasecurity
     git clone https://github.com/aquasecurity/trivy
-    cd trivy/cmd/trivy/
     export GO111MODULE=on
-    go install
-  displayName: 'Clone and install Trivy'
+  displayName: 'Clone Trivy'
+
+- task: Go@0
+  displayName: "Install Trivy"
+  inputs:
+    command: 'custom'
+    customCommand: 'install'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/trivy/cmd/trivy'
 
 - task: CmdLine@2
   inputs:
