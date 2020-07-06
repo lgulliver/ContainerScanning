@@ -25,6 +25,14 @@ steps:
   inputs:
     workingDirectory: $(System.DefaultWorkingDirectory)/trivy/cmd/trivy
     script: |
-      ls
-      ./trivy -v
+      ./trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml liamgu/azuredevopscontainersdemo:74 
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/junit-*.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'Trivy'
+  condition: 'always()'
 
