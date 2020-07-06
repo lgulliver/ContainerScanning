@@ -22,10 +22,10 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/trivy/cmd/trivy'
 
 - task: CmdLine@2
+  displayName: Run Trivy scan
   inputs:
-    workingDirectory: $(System.DefaultWorkingDirectory)/trivy/cmd/trivy
     script: |
-      ./trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml liamgu/azuredevopscontainersdemo:74 
+      $(System.DefaultWorkingDirectory)/trivy/cmd/trivy/trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml liamgu/azuredevopscontainersdemo:74 
 
 - task: PublishTestResults@2
   inputs:
