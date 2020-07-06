@@ -24,4 +24,8 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'trivy -v'
+    workingDirectory: $(System.DefaultWorkingDirectory)/trivy/cmd/trivy
+    script: |
+      ls
+      trivy -v
+
