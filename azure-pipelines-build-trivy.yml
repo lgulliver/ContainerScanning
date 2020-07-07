@@ -20,7 +20,7 @@ steps:
   displayName: Run Trivy scan
   inputs:
     script: |
-      $(System.DefaultWorkingDirectory)/trivy/cmd/trivy/trivy image --format template --template "@templates/junit.tpl" -o junit-report.xml ruby:2.4.0 
+      $(System.DefaultWorkingDirectory)/trivy/cmd/trivy/trivy image --format template --template "@contrib/junit.tpl" -o junit-report.xml ruby:2.4.0 
       cp $(System.DefaultWorkingDirectory)/junit-report.xml $(Build.ArtifactStagingDirectory)/junit-report.xml
 
 - task: PublishBuildArtifacts@1
