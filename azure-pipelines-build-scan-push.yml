@@ -40,7 +40,7 @@ stages:
       inputs:
         script: |
             trivy image --exit-code 0 --severity LOW,MEDIUM $(imageName):$(tag)
-         #   trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageName):$(tag)
+            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageName):$(tag)
 
     - task: Docker@2
       inputs:
