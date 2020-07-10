@@ -28,7 +28,7 @@ jobs:
         # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
         password: ${{ secrets.DockerHubPassword }}
         # Docker repository to tag the image with
-        repository: container-scanning-demo
+        repository: liamgu/container-scanning-demo
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: 'github-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}'
         # Path to the build context
