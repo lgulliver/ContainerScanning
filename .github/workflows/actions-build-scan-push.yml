@@ -57,6 +57,20 @@ jobs:
         # image reference
         image-ref: liamgu/container-scanning-demo:github-${{ env.BuildNumber }}
         # exit code when vulnerabilities were found
-        exit-code: 1
+        exit-code: 0
         # severities of vulnerabilities to be displayed
         severity: HIGH,CRITICAL
+        
+    - name: Push Docker image
+      uses: docker/build-push-action@v1.1.0
+      with:
+        # Username used to log in to a Docker registry. If not set then no login will occur
+        username: ${{ secrets.DockerHubUser }}
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        password: ${{ secrets.DockerHubPassword }}
+        # Docker repository to tag the image with
+        repository: liamgu/container-scanning-demo
+        # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+        tags: 'github-${{ env.BuildNumber }}'
+        # Whether to push the image
+        push: true
