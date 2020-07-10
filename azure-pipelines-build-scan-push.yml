@@ -47,4 +47,4 @@ stages:
         containerRegistry: 'Docker hub'
         repository: '$(imageName)'
         command: 'push'
-        tags: '$(imageName):$(tag)'
+        tags: '$(tag)'
