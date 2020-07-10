@@ -5,7 +5,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildNumber)'
+  tag: 'azuredevops-$(Build.BuildNumber)'
   trivyVersion: 0.9.1
   imageName: 'liamgu/container-scanning-demo'
 
