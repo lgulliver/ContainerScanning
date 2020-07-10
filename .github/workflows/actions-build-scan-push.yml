@@ -32,8 +32,8 @@ jobs:
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: 'github-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}'
         # Path to the build context
-        path: $GITHUB_WORKSPACE/src
+        path: '${{ env.GITHUB_WORKSPACE }}/src'
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
-        dockerfile: $GITHUB_WORKSPACE/src/ContainerScanning.HellowWorld/Dockerfile
+        dockerfile: '${{ env.GITHUB_WORKSPACE }}/src/ContainerScanning.HellowWorld/Dockerfile'
         # Whether to push the image
         push: false
