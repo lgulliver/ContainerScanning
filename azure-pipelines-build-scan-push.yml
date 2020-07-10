@@ -7,6 +7,7 @@ resources:
 variables:
   tag: '$(Build.BuildNumber)'
   trivyVersion: 0.9.1
+  imageName: 'container-scanning-demo'
 
 stages:
 - stage: Build
@@ -20,10 +21,11 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
+        repository: '$(imageName)'
         command: 'build'
         Dockerfile: '**/Dockerfile'
         buildContext: '$(Build.SourcesDirectory)/src/'
-        tags: 'containerscanningdemo:$(tag)'
+        tags: '$(tag)'
 
     - script: |
         sudo apt-get install rpm
@@ -36,5 +38,5 @@ stages:
       displayName: "Run trivy scan"
       inputs:
         script: |
-            trivy image --exit-code 0 --severity LOW,MEDIUM containerscanningdemo:$(tag)
-            trivy image --exit-code 1 --severity HIGH,CRITICAL containerscanningdemo:$(tag)
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageName):$(tag)
+            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageName):$(tag)
