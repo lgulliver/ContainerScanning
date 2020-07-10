@@ -40,3 +40,23 @@ jobs:
         dockerfile: 'src/ContainerScanning.HelloWorld/Dockerfile'
         # Whether to push the image
         push: false
+  
+    - name: Trivy Scan - Unknown, Low and Medium Severity
+      uses: aquasecurity/trivy-action@0.0.7
+      with:
+        # image reference
+        image-ref: liamgu/container-scanning-demo:github-${{ env.BuildNumber }}
+        # exit code when vulnerabilities were found
+        exit-code: 0
+        # severities of vulnerabilities to be displayed
+        severity: UNKNOWN,LOW,MEDIUM
+        
+    - name: Trivy Scan - High and Critical Severity
+      uses: aquasecurity/trivy-action@0.0.7
+      with:
+        # image reference
+        image-ref: liamgu/container-scanning-demo:github-${{ env.BuildNumber }}
+        # exit code when vulnerabilities were found
+        exit-code: 1
+        # severities of vulnerabilities to be displayed
+        severity: HIGH,CRITICAL
