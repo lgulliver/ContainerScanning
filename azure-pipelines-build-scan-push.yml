@@ -5,16 +5,16 @@ resources:
 - repo: self
 
 variables:
-  tag: 'azuredevops-$(Build.BuildNumber)'
   trivyVersion: 0.9.1
+  tag: 'azuredevops-$(Build.BuildNumber)'
   imageName: 'liamgu/container-scanning-demo'
 
 stages:
 - stage: Build
-  displayName: Build image
+  displayName: Build, Scan and Push image
   jobs:  
   - job: Build
-    displayName: Build
+    displayName: Build, Scan and Push
     pool:
       vmImage: 'ubuntu-latest'
     steps:

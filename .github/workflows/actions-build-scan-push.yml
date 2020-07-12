@@ -10,6 +10,7 @@ on:
 
 env:
   BuildNumber: ${{ github.run_id }}-${{ github.run_number }}
+  ImageName: 'liamgu/container-scanning-demo'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,7 +32,7 @@ jobs:
         # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
         password: ${{ secrets.DockerHubPassword }}
         # Docker repository to tag the image with
-        repository: liamgu/container-scanning-demo
+        repository: ${{ env.ImageName }}
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: 'github-${{ env.BuildNumber }}'
         # Path to the build context
