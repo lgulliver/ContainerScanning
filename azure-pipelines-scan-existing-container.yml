@@ -21,5 +21,5 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-        trivy image --exit-code 0 --severity LOW,MEDIUM mcr.microsoft.com/dotnet/core/aspnet:3.1
-        trivy image --exit-code 1 --severity HIGH,CRITICAL mcr.microsoft.com/dotnet/core/aspnet:3.1
+        trivy image --exit-code 0 --severity LOW,MEDIUM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
+        trivy image --exit-code 1 --severity HIGH,CRITICAL mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
