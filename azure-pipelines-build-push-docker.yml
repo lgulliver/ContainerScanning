@@ -9,7 +9,7 @@ variables:
   imageName: 'liamgu/container-scanning-demo'
 
 stages:
-- stage: Build and Push
+- stage: Build_and_Push
   displayName: Build
   jobs:  
   - job: Build
