@@ -1,0 +1,36 @@
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:  
+  tag: 'azuredevops-$(Build.BuildNumber)'
+  imageName: 'liamgu/container-scanning-demo'
+
+stages:
+- stage: Build and Push
+  displayName: Build
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'Docker hub'
+        repository: '$(imageName)'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+        buildContext: '$(Build.SourcesDirectory)/src/'
+        tags: '$(tag)'
+    
+    - task: Docker@2
+      displayName: Push
+      inputs:
+        containerRegistry: 'Docker hub'
+        repository: '$(imageName)'
+        command: 'push'
+        tags: '$(tag)'
